@@ -1,0 +1,94 @@
+
+                <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="body"> 
+    <button onclick="dodajSat()">Dodaj sat</button>
+    <h1 id="vreme">00:00:00</h1>
+    <script>
+     
+       
+       let vreme = document.getElementById("vreme");
+       const interval = setInterval(tick, 1);
+       let secondsPassed = 0;
+        
+       let seconds = 0, minutes = 0, hours = 0;
+
+       function dodajSat(){
+            secondsPassed += 3600;
+       }
+
+
+
+          /* 
+          DOMACI ZADATAK
+            0 - 4  : tamnoplava pozadina
+            5 - 8  : crvenkasta
+            9 - 14 : svetloplava
+            15 - 18 : i dalje svetla ali malo tamnija plva
+            19 - 21 : svetla, tamnoplava
+            22 - 24 : indigo
+        
+        */
+       function tick(){ 
+            secondsPassed ++;
+
+            seconds = secondsPassed % 60;
+            minutes = parseInt(secondsPassed / 60) % 60 ;
+            hours= parseInt(secondsPassed / 3600) % 24;
+
+            vreme.innerHTML = "";
+            let body = document.getElementById("body");
+            if(hours <= 4) {
+                body.style = "background-color: rgb(2, 15, 84) ;" ;
+                
+            }
+            else if(hours <= 8){
+                body.style = "background-color: red ;"
+            }
+            else if(hours <= 14){
+                body.style = "background-color: rgb(52, 164, 235) ;"
+                }
+            else if(hours <= 18){
+                body.style = "background-color: rgb(35, 115, 166) ;"
+                }
+            else if(hours <= 21){
+                body.style = "background-color: rgb(255, 213, 5) ;"
+                }
+            else if(hours <= 24){
+                body.style = "background-color: rgb( 43.5, 0, 100) ;"
+                }
+
+          console.log("mjau");
+            // pisemo sate -  za vodece nule
+            if(hours < 10){
+                
+                vreme.innerHTML += "0" + hours + ":";
+            }
+            else{
+                vreme.innerHTML += hours + ":";
+            }
+            // pisemo minute - proveravamo za vodece nule
+            if(minutes < 10){
+                vreme.innerHTML += "0" + minutes + ":";
+            }
+            else{
+                vreme.innerHTML += minutes + ":";
+            }
+            // pisemo sekunde - takodje proveravamo za vodece nule
+            if(seconds < 10){
+                vreme.innerHTML += "0" + seconds;
+            }
+            else{
+                vreme.innerHTML += seconds;
+            }
+            }
+           
+    </script>
+</body>
+</html>
